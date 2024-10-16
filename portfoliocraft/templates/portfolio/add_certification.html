@@ -1,0 +1,10 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h2>Add Certification</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-custom">Save</button>
+</form>
+{% endblock %}

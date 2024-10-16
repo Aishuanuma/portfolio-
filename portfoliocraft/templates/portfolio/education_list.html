@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% load static%}
+{% block content %}
+<h2>Your Education</h2>
+<a href="{% url 'add_education' %}" class="btn btn-custom">Add Education</a>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Degree</th>
+            <th>Institution</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for edu in education_entries %}
+        <tr>
+            <td>{{ edu.degree }}</td>
+            <td>{{ edu.institution }}</td>
+            <td>{{ edu.start_date }}</td>
+            <td>{{ edu.end_date|default:"N/A" }}</td>
+            <td>
+                <a href="{% url 'edit_education' edu.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{% url 'delete_education' edu.id %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No education entries found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,22 @@
+body{
+    background-color: black;
+}
+.card{
+    width: 100%;
+    background-color: aliceblue;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.card:hover .image img {
+    transform: scale(1.5);
+}
+.idd {
+    font-size: 70px;
+    font-weight: 700;
+}
+.btn {
+    height: 40px;
+    width: 140px;
+    border-radius: 5%;
+}

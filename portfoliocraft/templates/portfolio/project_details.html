@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% load static%}
+{% block content %}
+<title>{{ project.title }}</title>
+
+
+
+    <h1>{{ project.title }}</h1>
+    
+    {% if project.image %}
+        <img src="{{ project.image.url }}" alt="{{ project.title }}" width="300">
+    {% endif %}
+    
+    <p><strong>Description:</strong></p>
+    <p>{{ project.description }}</p>
+
+    {% if project.link %}
+        <p><strong>Link:</strong> <a href="{{ project.link }}" target="_blank">{{ project.link }}</a></p>
+    {% endif %}
+    
+    <p><strong>Created at:</strong> {{ project.created_at }}</p>
+    <p><strong>Last updated:</strong> {{ project.updated_at }}</p>
+    
+    <a href="{% url 'edit_project' project.id %}">Edit Project</a>
+    <a href="{% url 'project_list' %}">Back to Projects</a>
+
+
+
+{% endblock %}

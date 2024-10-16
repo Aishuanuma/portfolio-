@@ -1,0 +1,25 @@
+
+{% extends 'index.html' %}
+{% load static%}
+{% block content %}
+    <title>Edit Project</title>
+
+<body>
+   
+
+    <div class="container mt-5">
+        <h1>Edit Project: {{ project.title }}</h1>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Update Project</button>
+        </form>
+        <div class="mt-3">
+            <a href="{% url 'project_detail' project.id %}" class="btn btn-secondary">Back to Project Details</a>
+            <a href="{% url 'project_list' %}" class="btn btn-secondary">Back to Projects</a>
+        </div>
+    </div>
+
+{% endblock %}

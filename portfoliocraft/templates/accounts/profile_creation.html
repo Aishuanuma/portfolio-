@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% load static%}
+{% block content %}
+    <title>Create Profile</title>
+
+<body>
+    
+    <div class="container">
+        <h1>Create Your Profile</h1>
+        <form method="POST"  enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Create Profile</button>
+        </form>
+    </div>
+    
+    
+{% endblock %}

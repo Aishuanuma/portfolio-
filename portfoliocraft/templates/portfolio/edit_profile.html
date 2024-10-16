@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+{% load static%}
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+<body>
+
+    <div class="wrapper bg-white mt-sm-5">
+        <h4 class="pb-4 border-bottom">Account settings</h4>
+        
+        
+        
+            <form method="POST"  enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-dark">Save Changes</button>
+            </form>
+        
+        
+        <div class="profile-link">
+            <br>
+            <a href="{% url 'profile' %}" class="btn btn-secondary">Back to Profile</a>
+        </div>
+    </div>
+
+{% endblock%}

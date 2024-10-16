@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Panel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+       
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffc107 !important;
+        }
+
+      
+        .main-container {
+            display: flex;
+            height: calc(100vh - 56px); 
+        }
+
+        
+        .sidebar {
+            width: 250px;
+            background-color: #1c1e21;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar .list-group-item {
+            background-color: #1c1e21;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .sidebar .list-group-item:hover {
+            background-color: #343a40;
+            cursor: pointer;
+        }
+
+        .sidebar .list-group-item.active {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .sidebar .list-group-item a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .content {
+            flex-grow: 1; 
+            padding: 30px;
+            background-color: #f8f9fa;
+            overflow-y: auto;
+        }
+
+        
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #007bff;
+            border-radius: 10px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background-color: #1c1e21;
+        }
+
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%; 
+                height: auto;
+            }
+            .main-container {
+                flex-direction: column; 
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">User Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'portfolio_setup' %}">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    
+    <div class="main-container">
+        
+        <div class="sidebar">
+            <ul class="list-group">
+                <li class="list-group-item active"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+                <li class="list-group-item"><a href="{% url 'project_list' %}"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li class="list-group-item"><a href="{% url 'work_experience_list' %}"><i class="fas fa-briefcase"></i> Work Experience</a></li>
+                <li class="list-group-item"><a href="{% url 'certification_list' %}"><i class="fas fa-certificate"></i> Certifications</a></li>
+                <li class="list-group-item"><a href="{% url 'education_list' %}"><i class="fas fa-university"></i> Education</a></li>
+                
+            </ul>
+        </div>
+
+        
+        <div class="content">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

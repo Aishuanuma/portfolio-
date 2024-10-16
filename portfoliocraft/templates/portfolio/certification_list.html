@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block content %}
+<h2>Your Certifications</h2>
+<a href="{% url 'add_certification' %}" class="btn btn-custom">Add Certification</a>
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Issued By</th>
+            <th>Date Issued</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cert in certifications %}
+        <tr>
+            <td>{{ cert.name }}</td>
+            <td>{{ cert.issuer }}</td>
+            <td>{{ cert.date_obtained }}</td>
+            
+            <td>
+                <form action="{% url 'delete_certification' cert.id %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button><br>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No certifications found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
